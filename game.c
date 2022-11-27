@@ -8,13 +8,7 @@ int main(){
 	setlocale(LC_ALL, "portuguese");
 	char menuEscolha[99];
 	
-	printf("Escolha uma das opções a seguir digitando o numero correspodente:\n");
-	printf("| 1 - Jogar\n");
-	printf("| 2 - Vencedores\n");
-	printf("| 3 - Creditos\n");
-	printf("| 4 - Sair\n");
-	printf("| ");
-	fgets(menuEscolha, sizeof menuEscolha, stdin);
+	menu(menuEscolha);
 	
 	while(1){
 		if(menuEscolha[0] == '1'){
@@ -30,8 +24,18 @@ int main(){
 			
 				system("cls");
 				
-				int numeroAleatorio = gerarNumeroAleatorio(300), perguntaIndice = 1, respostaIndice = 2, alternativaCorretaIndice = 1801, caracterInvalido, premioAtual, premioDerrota;
+				int numeroAleatorio, perguntaIndice = 1, respostaIndice = 2, alternativaCorretaIndice = 1801, caracterInvalido, premioAtual, premioDerrota;
 				char respostaUsuario[99], alternativaCorreta = '2';
+				
+				if(i <= 5){
+					numeroAleatorio = gerarNumeroAleatorio(101, 0);
+				}
+				else if(i <= 10){
+					numeroAleatorio = gerarNumeroAleatorio(101, 100);	
+				}
+				else if(i <= 15){
+					numeroAleatorio = gerarNumeroAleatorio(101, 200);	
+				}
 				
 				if(numeroAleatorio > 1){
 					perguntaIndice = (numeroAleatorio*6)-5;
@@ -46,6 +50,7 @@ int main(){
 				premioDerrota = checarPremioPerder(i);
 				printf("\nDigite 5 caso queira parar ganhando R$%i\n", premioAtual);
 				printf("\nDigite o número correspodente a alternativa correta: ");
+
 				do{
 					
 					caracterInvalido = 0;
@@ -87,30 +92,118 @@ int main(){
 				}
 			}
 			
-			printf("Escolha uma das opções a seguir digitando o numero correspodente:\n");
-			printf("| 1 - Jogar\n");
-			printf("| 2 - Vencedores\n");
-			printf("| 3 - Creditos\n");
-			printf("| 4 - Sair\n");
-			printf("| ");
-			fgets(menuEscolha, sizeof menuEscolha, stdin);
+			menu(menuEscolha);
 			
 		}
 		else if(menuEscolha[0] == '2'){
-			printf("Escolheu 2.\n");
-			fgets(menuEscolha, sizeof menuEscolha, stdin);
+			
+			system("cls");
+			
+			int checagemExibirVencedores;
+			
+			checagemExibirVencedores = exibirVencedores();
+			
+			if(checagemExibirVencedores  == 0){
+				while(1){
+					printf("\n\n");
+					printf("1 - Apagar histórico de Vencedores | 2 - Sair do histórico de Vencedores\n| ");
+					fgets(menuEscolha, sizeof menuEscolha, stdin);
+					
+					if(menuEscolha[0] == '1'){
+						remove("./data/vencedores.txt");
+						system("cls");
+						break;
+					}
+					else if(menuEscolha[0] == '2'){
+						break;
+					}
+					else{
+						
+						printf("\nVocê digitou uma opção inválida, por favor digite uma das opções listadas.\n| ");
+						fgets(menuEscolha, sizeof menuEscolha, stdin);
+						
+					}
+					
+				}
+			}
+			else{
+				
+				printf("Aparentemente ninguém ainda conseguiu ganhar 1 milhão de Reais.\n\n");
+				system("pause");
+				
+			}
+			system("cls");
+			menu(menuEscolha);
+			
 		}
 		else if(menuEscolha[0] == '3'){
-			printf("Creditos\nWilton");
-			fgets(menuEscolha, sizeof menuEscolha, stdin);
+			
+			system("cls");
+			
+			int checagemExibirHistorico;
+			
+			checagemExibirHistorico = exibirHistorico();
+			
+			if(checagemExibirHistorico == 0){
+				while(1){
+					printf("\n\n");
+					printf("1 - Apagar histórico | 2 - Sair do histórico\n| ");
+					fgets(menuEscolha, sizeof menuEscolha, stdin);
+					
+					if(menuEscolha[0] == '1'){
+						remove("./data/historico.txt");
+						system("cls");
+						break;
+					}
+					else if(menuEscolha[0] == '2'){
+						break;
+					}
+					else{
+						
+						printf("\nVocê digitou uma opção inválida, por favor digite uma das opções listadas.\n| ");
+						fgets(menuEscolha, sizeof menuEscolha, stdin);
+						
+					}
+					
+				}
+			}
+			else{
+				
+				printf("Aparentemente você ainda não jogou, portanto não há histórico.\n\n");
+				system("pause");
+				
+			}
+			system("cls");
+			menu(menuEscolha);
+			
 		}
 		else if(menuEscolha[0] == '4'){
+			
+			system("cls");
+			
+			printf("|\t\t\t\tCreditos\t\t\t\t|\n");
+			printf("|\t\t\t\t\t\t\t\t\t|\n");
+			printf("|\t\t\t\t Wilton\t\t\t\t\t|\n");
+			printf("________________________________________________________________________");
+			
+			printf("\n\n");
+			system("pause");
+			system("cls");
+			
+			menu(menuEscolha);
+			
+		}
+		else if(menuEscolha[0] == '5'){
+			
 			return 0;
 			break;
+			
 		}
 		else{
-			printf("\nVocê digitou uma opção inválida, por favor digite uma das opções listadas.\n");
+			
+			printf("\nVocê digitou uma opção inválida, por favor digite uma das opções listadas.\n| ");
 			fgets(menuEscolha, sizeof menuEscolha, stdin);
+			
 		}
 	}
 	

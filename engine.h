@@ -9,11 +9,24 @@
 #include <stdbool.h> 
 #include <string.h>
 
-int gerarNumeroAleatorio(int maxRange){
+int gerarNumeroAleatorio(int maxRange, int minRange){
 	
 	srand(time(NULL));
-	return rand() % maxRange;
+	return minRange + (rand() % maxRange);
 	
+}
+
+void menu(char opcaoMenu[99]){
+	
+	printf("Escolha uma das opções a seguir digitando o numero correspodente:\n");
+	printf("| 1 - Jogar\n");
+	printf("| 2 - Vencedores\n");
+	printf("| 3 - Historico\n");
+	printf("| 4 - Creditos\n");
+	printf("| 5 - Sair\n");
+	printf("| ");
+	fgets(opcaoMenu, sizeof opcaoMenu, stdin);
+		
 }
 
 void exibirPergunta(int numeroPergunta){
@@ -194,12 +207,14 @@ void salvarVencedores(char nome[99]){
 	
 	if(file_exists("./data/vencedores.txt")){
 		vencedores = fopen("./data/vencedores.txt", "a");
+		fputs("\n", vencedores);
 	}
 	else{
 		vencedores = fopen("./data/vencedores.txt", "w");
-		fputs("--- Vencedores do Jogo ---\n\n", vencedores);
+		fputs("---- Vencedores do Jogo ----\n\n", vencedores);
 	}
 	
+	nome[strlen(nome) - 1] = ' ';
 	fputs(nome, vencedores);
 	
 	fclose(vencedores);
@@ -213,10 +228,11 @@ void salvarHistorico(char nome[99], int premio){
 	
 	if(file_exists("./data/historico.txt")){
 		historico = fopen("./data/historico.txt", "a");
+		fputs("\n", historico);
 	}
 	else{
 		historico = fopen("./data/historico.txt", "w");
-		fputs("--- Historico ---\n\n", historico);
+		fputs("------ Historico ------\n\n", historico);
 	}
 	
 	nome[strlen(nome) - 1] = ' ';
@@ -225,9 +241,61 @@ void salvarHistorico(char nome[99], int premio){
 	fputs(nome, historico);
 	fputs("- R$", historico);
 	fputs(premioString, historico);
-	fputs("\n", historico);
 	
 	fclose(historico);
+	
+}
+
+int exibirVencedores(){
+	
+	FILE *vencedores;
+	
+	if(file_exists("./data/vencedores.txt")){
+		
+		vencedores = fopen("./data/vencedores.txt", "r");
+		char linha[99];
+		
+		while(!feof(vencedores)){
+			fgets(linha, 98, vencedores);
+			printf("%s", linha);
+		}
+		
+		fclose(vencedores);
+		return 0;
+		
+	}
+	
+	else{
+		
+		return 1;
+		
+	}		
+		
+}
+
+int exibirHistorico(){
+	
+	FILE *historico;
+	
+	if(file_exists("./data/historico.txt")){
+		historico = fopen("./data/historico.txt", "r");
+		
+		char linha[99];
+		
+		while(!feof(historico)){
+			fgets(linha, 98, historico);
+			printf("%s", linha);
+		}
+		
+		fclose(historico);
+		return 0;
+		
+	}
+	else{
+		
+		return 1;
+		
+	}	
 	
 }
 
