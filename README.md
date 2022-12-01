@@ -6,6 +6,8 @@ Integrantes: Wilton Nicolas de Lima Lopes - 29460468
 
 O jogo consiste em perguntas e respostas, a medida em que o jogador vai acertando perguntas a premiação vai subindo, mas a dificuldades das perguntas também é elevada. Tendo um total de 300 perguntas no acervo, 16 perguntas selecionadas aleatoriamente serão feitas em sequência ao jogador, caso acerte todas as perguntas recebera a premiação de 1 milhão de reais e terá seu nome registrado no pódio dos Vencedores, caso perca ainda receberá uma menor quantia, exceto na pergunta de 1 milhão, onde se errar ira perder tudo. Além disso o jogador pode pedir para parar ao decorrer do jogo, se escolher parar, recebera uma menor quantia, mas não menor que a quantia da resposta errada.
 
+[Demonstração em vídeo](https://www.youtube.com/watch?v=fEu3uoGXORo&ab_channel=WiltonNicolas)
+
 # Resultados
 
 Ao inciar o jogo, você poderá escolher entre 5 opções.
