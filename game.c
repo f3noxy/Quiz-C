@@ -24,18 +24,35 @@ int main(){
 			
 				system("cls");
 				
-				int numeroAleatorio, perguntaIndice = 1, respostaIndice = 2, alternativaCorretaIndice = 1801, caracterInvalido, premioAtual, premioDerrota;
+				int numeroAleatorio, perguntaIndice = 1, respostaIndice = 2, alternativaCorretaIndice = 1801, caracterInvalido, premioAtual, premioDerrota, j = -1, numerosSorteados[16];
 				char respostaUsuario[99], alternativaCorreta = '2';
 				
-				if(i <= 5){
-					numeroAleatorio = gerarNumeroAleatorio(101, 0);
-				}
-				else if(i <= 10){
-					numeroAleatorio = gerarNumeroAleatorio(101, 100);	
-				}
-				else if(i <= 15){
-					numeroAleatorio = gerarNumeroAleatorio(101, 200);	
-				}
+				do{
+				    if(i <= 5 && j == -1){
+    					numeroAleatorio = gerarNumeroAleatorio(101, 0);
+    				}
+    				else if(i <= 5 && numerosSorteados[j] == numeroAleatorio){
+    					numeroAleatorio = gerarNumeroAleatorio(101, 0);
+    					j = -1;
+    				}
+    				else if(i <= 10 && j == -1){
+    					numeroAleatorio = gerarNumeroAleatorio(101, 100);	
+    				}
+    				else if(i <= 10 && numerosSorteados[j] == numeroAleatorio){
+    					numeroAleatorio = gerarNumeroAleatorio(101, 100);	
+    					j = -1;
+    				}
+    				else if(i <= 15 && j == -1){
+    					numeroAleatorio = gerarNumeroAleatorio(101, 200);	
+    				}
+    				else if(i <= 15 && numerosSorteados[j] == numeroAleatorio){
+    					numeroAleatorio = gerarNumeroAleatorio(101, 200);
+						j = -1;	
+    				}
+    				j++;
+				}while(j < i);
+				
+				numerosSorteados[i] = numeroAleatorio; 
 				
 				if(numeroAleatorio > 1){
 					perguntaIndice = (numeroAleatorio*6)-5;
