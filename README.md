@@ -16,9 +16,13 @@ Ao inciar o jogo, você poderá escolher entre 5 opções.
 
 ## Primeira opção - Jogar
 
-Escolhendo a primeira opção, você precisará digitar um nome antes de inciar o jogo. Após a escolha do nome, será feito um total de 16 perguntas, caso você não erre ou não escolha a opção de parar. Para a seleção das perguntas é gerado um número aleátorio, entre determinados intervalos de acordo com o número de perguntas acertadas. 
+Escolhendo a primeira opção, você precisará digitar um nome antes de inciar o jogo. Após a escolha do nome, será feito um total de 16 perguntas, caso você não erre ou não escolha a opção de parar. Para a seleção das perguntas é gerado um número aleátorio, entre determinados intervalos de acordo com o número de perguntas acertadas.
 
-![image](https://user-images.githubusercontent.com/78822853/204968435-a82de6eb-1329-418c-8cae-354eed0b808c.png)
+Dificuldade: Não ter um número aleátorio repetido nas perguntas.
+
+Apesar de sempre ser gerado um número aleátorio, ainda havia a chance do número se repetir eventualmente, então foi necessário fazer um sistema para que se guarde os números já gerados dentro de um array, e então cada vez que um novo número for gerado ele será comparado com todos os números salvos dentro da array, caso seja igual, um novo número será gerado e o processo de comparação será repetido, até que o novo número seja diferente de todos os anteriores.
+
+![image](https://user-images.githubusercontent.com/78822853/205145610-7f5860e2-bd13-42e4-9c25-1f6c10def779.png)
 
 Dificuldade: Manipular o arquivo de texto das pergutas para imprimir as perguntas na tela.
 
